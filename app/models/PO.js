@@ -35,4 +35,4 @@ PO.list = (clientID) => {
     });
 };
 
-exports.module = PO;
+module.exports = PO;

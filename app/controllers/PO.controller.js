@@ -32,7 +32,6 @@ const listPOs = async (req, res) => {
         console.log(err);
         res.json({error: err});
     }
-
-   
 };
+
 module.exports = {createPO, listPOs};

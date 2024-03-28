@@ -9,9 +9,9 @@ const createPO = async (req, res) => {
     }
 
     try {
-        let newPO = new PO(req.body.partName, req.body.qoh, req.body.currentPrice);
+        let newPO = new PO(req.body.clientCompID, req.body.dataOfPO, req.body.poStatus);
         let data = await PO.create(newPO);
-        res.json({parts: data});
+        res.json({po: data});
     } catch (err) {
         console.log(err);
         res.json({error: err});
@@ -19,11 +19,6 @@ const createPO = async (req, res) => {
 };
 
 const listPOs = async (req, res) => {
-    if(!req.body) {
-        res.status.json({
-            message: "Content can not be empty!"
-        });
-    }
 
     try {
         let data = await PO.list(req.params.clientID);

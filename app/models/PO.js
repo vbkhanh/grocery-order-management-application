@@ -1,10 +1,10 @@
 
 const db = require('./db');
 
-const PO = function(po) {
-    this.clientCompID = po.clientCompID;
-    this.dataOfPO = po.dataOfPO;
-    this.status = po.status;
+const PO = function(clientCompID, dataOfPO, poStatus) {
+    this.clientCompID = clientCompID;
+    this.dataOfPO = dataOfPO;
+    this.status = poStatus;
 };
 
 PO.create = (newPO) => {
@@ -28,7 +28,6 @@ PO.list = (clientID) => {
         db.query(query, [clientID], (err, res) => {
             if(err) {
                 reject(err);
-                return;
             }
             resolve(res);
         });

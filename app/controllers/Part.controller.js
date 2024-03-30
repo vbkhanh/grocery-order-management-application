@@ -15,17 +15,17 @@ const createPart = async (req, res) => {
         res.json({parts: data});
     } catch (err) {
         console.log(err);
-        res.json({error: err});
+        res.status(500).json({error: err});
     }
 };
 
 const listParts = async (req, res) => {
     try {
         let data = await Part.list();
-        res.json({parts: data});
+        res.json({Parts: data});
     }
     catch (err) {
-        res.json({error: err});
+        res.status(500).json({error: err});
     }
     
 };

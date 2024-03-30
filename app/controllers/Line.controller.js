@@ -12,16 +12,19 @@ const createLine = async (req, res) => {
         let data = await Line.create(newLine);
         res.json({line: data});
     } catch (err) {
-        res.json({error: err});
+        res.status(500).json({error: err});
     }
 };
 
 const listLines = async (req, res) => {
-/*
+
     try {
         let data = await Line.list(req.params.poNo);
+        res.json({Lines: data});
     } catch (err) {
-        
+        res.status(500).json({error: err});
     }
-*/
+
 };
+
+module.exports = {createLine, listLines};

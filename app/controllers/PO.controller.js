@@ -14,7 +14,7 @@ const createPO = async (req, res) => {
         res.json({po: data});
     } catch (err) {
         console.log(err);
-        res.json({error: err});
+        res.status(500).json({error: err});
     }
 };
 
@@ -25,7 +25,7 @@ const listPOs = async (req, res) => {
         res.json({POs: data});
     } catch (err) {
         console.log(err);
-        res.json({error: err});
+        res.status(500).json({error: err});
     }
 };
 

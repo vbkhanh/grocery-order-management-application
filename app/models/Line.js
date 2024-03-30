@@ -23,7 +23,7 @@ Line.create = (newLine) => {
 
 Line.list = (poNo) => {
     return new Promise((resolve, reject) => {
-        let query = 'SELECT * FROM Lines024 WHERE poNo024 = ?';
+        let query = 'SELECT * FROM lines_x_024 WHERE poNo024 = ?';
 
         db.query(query, [poNo], (err, res) => {
             if(err) {

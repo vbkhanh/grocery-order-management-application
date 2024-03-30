@@ -4,8 +4,9 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-const partControllers = require('./controllers/Part.controller');
-const poControllers = require('./controllers/PO.controller');
+const partController = require('./controllers/Part.controller');
+const poController = require('./controllers/PO.controller');
+const lineController = require('./controllers/Line.controller');
 
 const cors = require('cors');
 
@@ -21,11 +22,13 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/listParts', partControllers.listParts);
+app.get('/listParts', partController.listParts);
 
-app.post('/createPart', partControllers.createPart);
+app.post('/createPart', partController.createPart);
 
-app.get('/listPOs/:clientID', poControllers.listPOs);
+app.get('/listPOs/:clientID', poController.listPOs);
+
+app.get('/listLines/:poNo', lineController.listLines);
 
 const PORT = process.env.PORT || 8081;
 

@@ -12,8 +12,7 @@ const createLine = async (req, res) => {
         let data = await Line.create(newLine);
         res.json({line: data});
     } catch (err) {
-        res.status(500).json({error: err});
-    }
+        next(err);    }
 };
 
 const listLines = async (req, res) => {
@@ -22,8 +21,7 @@ const listLines = async (req, res) => {
         let data = await Line.list(req.params.poNo);
         res.json({Lines: data});
     } catch (err) {
-        res.status(500).json({error: err});
-    }
+        next(err);    }
 
 };
 

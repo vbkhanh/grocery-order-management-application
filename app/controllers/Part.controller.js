@@ -1,7 +1,7 @@
 const Part = require('../models/Part');
 
 
-const createPart = async (req, res) => {
+const createPart = async (req, res, next) => {
 
     if(!req.body) {
         res.status(400).json({
@@ -15,17 +15,17 @@ const createPart = async (req, res) => {
         res.json({parts: data});
     } catch (err) {
         console.log(err);
-        res.status(400).json({error: err});
+        next(err);
     }
 };
 
-const listParts = async (req, res) => {
+const listParts = async (req, res, next) => {
     try {
         let data = await Part.list();
         res.json({Parts: data});
     }
     catch (err) {
-        res.status(500).json({error: err});
+        next(err);
     }
     
 };

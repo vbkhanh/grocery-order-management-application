@@ -9,6 +9,7 @@ const poController = require('./controllers/PO.controller');
 const lineController = require('./controllers/Line.controller');
 
 const cors = require('cors');
+const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
 
@@ -29,6 +30,8 @@ app.post('/createPart', partController.createPart);
 app.get('/listPOs/:clientID', poController.listPOs);
 
 app.get('/listLines/:poNo', lineController.listLines);
+
+app.use(errorHandler);
 
 const PORT = process.env.PORT || 8081;
 

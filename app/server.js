@@ -10,6 +10,7 @@ const lineController = require('./controllers/Line.controller');
 
 const cors = require('cors');
 const errorHandler = require('./middleware/errorHandler');
+const tryCatch = require('./utils/tryCatch');
 
 const app = express();
 
@@ -23,13 +24,13 @@ app.get('/', (req, res) => {
 });
 
 
-app.get('/listParts', partController.listParts);
+app.get('/listParts', tryCatch(partController.listParts));
 
-app.post('/createPart', partController.createPart);
+app.post('/createPart', tryCatch(partController.createPart));
 
-app.get('/listPOs/:clientID', poController.listPOs);
+app.get('/listPOs/:clientID', tryCatch(poController.listPOs));
 
-app.get('/listLines/:poNo', lineController.listLines);
+app.get('/listLines/:poNo', tryCatch(lineController.listLines));
 
 app.use(errorHandler);
 

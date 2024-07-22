@@ -3,30 +3,19 @@ const PO = require('../models/PO');
 
 const createPO = async (req, res) => {
     if(!req.body) {
-        res.status(400).json({
-            message: "Content can not be empty!"
-        });
+        throw new Error("Content can not be empty!");
     }
-
-    try {
-        let newPO = new PO(req.body.clientCompID, req.body.dataOfPO, req.body.poStatus);
-        let data = await PO.create(newPO);
-        res.json({po: data});
-    } catch (err) {
-        console.log(err);
-        res.status(500).json({error: err});
-    }
+   
+    let newPO = new PO(req.body.clientCompID, req.body.dataOfPO, req.body.poStatus);
+    let data = await PO.create(newPO);
+    res.status(200).json({po: data});
 };
 
 const listPOs = async (req, res) => {
 
-    try {
-        let data = await PO.list(req.params.clientID);
-        res.json({POs: data});
-    } catch (err) {
-        console.log(err);
-        res.status(400).json({error: err});
-    }
+    let data = await PO.list(req.params.clientID);
+    res.status(200).json({POs: data});
+   
 };
 
 module.exports = {createPO, listPOs};
